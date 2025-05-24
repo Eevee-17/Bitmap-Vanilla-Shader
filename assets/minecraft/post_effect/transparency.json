@@ -73,34 +73,38 @@
 					"target": "final"
 				}
 			],
-			"uniforms": [
-				{
-					"name": "InverseAmount",
-					"type": "float",
-					"values": [ 0.4 ]
-				}
-			],
+			"uniforms": {
+                "InvertConfig": [
+                    {
+                        "name": "InverseAmount",
+                        "type": "float",
+                        "value": 0.4
+                    }
+                ]
+			},
 			"output": "minecraft:main"
 		},
-		{
-            "vertex_shader": "minecraft:post/sobel",
-            "fragment_shader": "minecraft:post/notch",
+        {
+            "vertex_shader": "minecraft:post/blit",
+            "fragment_shader": "minecraft:post/blit",
             "inputs": [
                 {
-					"sampler_name": "Diffuse",
+                    "sampler_name": "In",
                     "target": "minecraft:main"
-				},
-                {
-                    "sampler_name": "Dither",
-					"location": "minecraft:dither",
-					"width": 4,
-					"height": 4,
-					"bilinear": true
                 }
             ],
+            "uniforms": {
+                "BlitConfig": [
+                    {
+                        "name": "ColorModulate",
+                        "type": "vec4",
+                        "value": [ 1.0, 1.0, 1.0, 1.0 ]
+                    }
+                ]
+            },
             "output": "final"
         },
-		{
+        {
             "vertex_shader": "minecraft:post/sobel",
             "fragment_shader": "minecraft:post/greyscale",
             "inputs": [
@@ -120,23 +124,25 @@
 					"target": "minecraft:main"
 				}
 			],
-			"uniforms": [
-				{
-                    "name": "RedMatrix",
-					"type": "vec3",
-                    "values": [ 2.0, 0.0, 0.0 ]
-                },
-                {
-                    "name": "GreenMatrix",
-					"type": "vec3",
-                    "values": [ 0.0, 2.0, 0.0 ]
-                },
-                {
-                    "name": "BlueMatrix",
-					"type": "vec3",
-                    "values": [ 0.0, 0.0, 2.0 ]
-                }
-			],
+			"uniforms": {
+                "ColorConfig": [
+                    {
+                        "name": "RedMatrix",
+                        "type": "vec3",
+                        "value": [ 2.0, 0.0, 0.0 ]
+                    },
+                    {
+                        "name": "GreenMatrix",
+                        "type": "vec3",
+                        "value": [ 0.0, 2.0, 0.0 ]
+                    },
+                    {
+                        "name": "BlueMatrix",
+                        "type": "vec3",
+                        "value": [ 0.0, 0.0, 2.0 ]
+                    }
+                ]
+			},
 			"output": "final"
 		},
 		{
@@ -148,18 +154,20 @@
 					"target": "final"
 				}
 			],
-			"uniforms": [
-                {
-                    "name": "Resolution",
-                    "type": "float",
-                    "values": [ 1.0 ]
-                },
-                {
-                    "name": "MosaicSize",
-                    "type": "float",
-                    "values": [ 1.0 ]
-                }
-            ],
+			"uniforms": {
+                "BitsConfig": [
+                    {
+                        "name": "Resolution",
+                        "type": "float",
+                        "value": 1.0
+                    },
+                    {
+                        "name": "MosaicSize",
+                        "type": "float",
+                        "value": 1.0
+                    }
+                ]
+            },
 			"output": "minecraft:main"
 		}
     ]
