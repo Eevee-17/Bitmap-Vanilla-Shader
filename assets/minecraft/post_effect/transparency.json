@@ -84,24 +84,22 @@
 			},
 			"output": "minecraft:main"
 		},
-        {
-            "vertex_shader": "minecraft:post/blit",
-            "fragment_shader": "minecraft:post/blit",
+		{
+            "vertex_shader": "minecraft:post/sobel",
+            "fragment_shader": "minecraft:post/notch",
             "inputs": [
                 {
-                    "sampler_name": "In",
+					"sampler_name": "Diffuse",
                     "target": "minecraft:main"
+				},
+                {
+                    "sampler_name": "Dither",
+					"location": "minecraft:dither",
+					"width": 4,
+					"height": 4,
+					"bilinear": true
                 }
             ],
-            "uniforms": {
-                "BlitConfig": [
-                    {
-                        "name": "ColorModulate",
-                        "type": "vec4",
-                        "value": [ 1.0, 1.0, 1.0, 1.0 ]
-                    }
-                ]
-            },
             "output": "final"
         },
         {
