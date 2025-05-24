@@ -5,12 +5,15 @@ uniform sampler2D DitherSampler;
 
 in vec2 texCoord;
 
-uniform vec2 DiffuseSize;
+layout(std140) uniform SamplerInfo {
+	vec2 OutSize;
+	vec2 InSize;
+};
 
 out vec4 fragColor;
 
 void main() {
-    vec2 halfSize = DiffuseSize * 0.5;
+    vec2 halfSize = OutSize * 0.5;
 
     vec2 steppedCoord = texCoord;
     steppedCoord.x = float(int(steppedCoord.x*halfSize.x)) / halfSize.x;
