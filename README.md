@@ -8,12 +8,3 @@ The whole world of Minecraft is shown in a bitmap style (only black and white pi
 Modrinth page: [https://modrinth.com/shader/bitmap-vanilla-shader](https://modrinth.com/shader/bitmap-vanilla-shader)
 
 My video on this shader: [https://www.youtube.com/watch?v=5AhbD0TNWCQ](https://www.youtube.com/watch?v=5AhbD0TNWCQ)
-
-### Shader Breakdown:
-This gets a _little_ technical, but I tried to simplify it a bit.
-
-All the following happens in the transparency post-processing effect after the default processes happen:
-- The shader program `invert` with a value of `0.4` is applied to `main`.
-- The shader program `notch` _(removed from defaults in 24w11a, so I included working versions of the files in the program folder)_ with a width and height of `8` and bilinear being `true` is applied to the output from the previous program and then put in `main`.
-- The shader program `color_convolve` is applied to `main` with `RedMatrix`, `GreenMatrix`, `BlueMatrix`, and `Saturation` being set to `[2.0, 0.0, 0.0]`, `[0.0, 2.0, 0.0]`, `[0.0, 2.0, 0.0]`, and `0.0` respectively.
-- The shader program `bits` is applied to the output from the previous program with a resolution and mosaic size of `1.0` and then put in `main`.
