@@ -4,7 +4,7 @@
     },
     "passes": [
         {
-            "vertex_shader": "minecraft:post/screenquad",
+            "vertex_shader": "minecraft:core/screenquad",
             "fragment_shader": "minecraft:post/transparency",
             "inputs": [
                 {
@@ -64,16 +64,17 @@
             ],
             "output": "final"
         },
-		{
-			"vertex_shader": "minecraft:post/blit",
-			"fragment_shader": "minecraft:post/invert",
-			"inputs": [
-				{
-					"sampler_name": "In",
-					"target": "final"
-				}
-			],
-			"uniforms": {
+        {
+            "vertex_shader": "minecraft:core/screenquad",
+            "fragment_shader": "minecraft:post/invert",
+            "inputs": [
+                {
+                    "sampler_name": "In",
+                    "target": "final"
+                }
+            ],
+            "output": "minecraft:main",
+            "uniforms": {
                 "InvertConfig": [
                     {
                         "name": "InverseAmount",
@@ -81,17 +82,16 @@
                         "value": 0.4
                     }
                 ]
-			},
-			"output": "minecraft:main"
-		},
-		{
-            "vertex_shader": "minecraft:post/sobel",
+            }
+        },
+        {
+            "vertex_shader": "minecraft:core/screenquad",
             "fragment_shader": "minecraft:post/notch",
             "inputs": [
                 {
-					"sampler_name": "Diffuse",
+                    "sampler_name": "Diffuse",
                     "target": "minecraft:main"
-				},
+                },
                 {
                     "sampler_name": "Dither",
 					"location": "minecraft:dither",
@@ -103,7 +103,7 @@
             "output": "final"
         },
         {
-            "vertex_shader": "minecraft:post/sobel",
+            "vertex_shader": "minecraft:core/screenquad",
             "fragment_shader": "minecraft:post/greyscale",
             "inputs": [
                 {
@@ -113,16 +113,17 @@
             ],
             "output": "minecraft:main"
         },
-		{
-			"vertex_shader": "minecraft:post/sobel",
-			"fragment_shader": "minecraft:post/color_convolve",
-			"inputs": [
-				{
-					"sampler_name": "In",
-					"target": "minecraft:main"
-				}
-			],
-			"uniforms": {
+        {
+            "vertex_shader": "minecraft:core/screenquad",
+            "fragment_shader": "minecraft:post/color_convolve",
+            "inputs": [
+                {
+                    "sampler_name": "In",
+                    "target": "minecraft:main"
+                }
+            ],
+            "output": "final",
+            "uniforms": {
                 "ColorConfig": [
                     {
                         "name": "RedMatrix",
@@ -140,19 +141,19 @@
                         "value": [ 0.0, 0.0, 2.0 ]
                     }
                 ]
-			},
-			"output": "final"
-		},
-		{
-			"vertex_shader": "minecraft:post/sobel",
-			"fragment_shader": "minecraft:post/bits",
-			"inputs": [
-				{
-					"sampler_name": "In",
-					"target": "final"
-				}
-			],
-			"uniforms": {
+            }
+        },
+        {
+            "vertex_shader": "minecraft:core/screenquad",
+            "fragment_shader": "minecraft:post/bits",
+            "inputs": [
+                {
+                    "sampler_name": "In",
+                    "target": "final"
+                }
+            ],
+            "output": "minecraft:main",
+            "uniforms": {
                 "BitsConfig": [
                     {
                         "name": "Resolution",
@@ -165,8 +166,7 @@
                         "value": 1.0
                     }
                 ]
-            },
-			"output": "minecraft:main"
-		}
+            }
+        }
     ]
 }
