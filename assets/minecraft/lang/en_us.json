@@ -1,4 +1,4 @@
 {
-	"options.graphics.fabulous": "Bitmap",
-	"options.graphics.fabulous.tooltip": "%s graphics uses screen shaders to make the game only black and white with dithering to show different shades!"
+	"options.improvedTransparency": "Bitmap Graphics",
+	"options.improvedTransparency.tooltip": "Bitmap graphics uses screen shaders to make the game only black and white with dithering to show different shades!"
 }
