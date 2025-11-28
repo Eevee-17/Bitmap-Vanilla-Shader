@@ -93,10 +93,10 @@
                     "target": "minecraft:main"
                 },
                 {
-                    "sampler_name": "Dither",
-					"location": "minecraft:dither",
-					"width": 4,
-					"height": 4,
+                    "sampler_name": "Pattern",
+					"location": "minecraft:notch_pattern",
+					"width": 16,
+					"height": 16,
 					"bilinear": true
                 }
             ],
