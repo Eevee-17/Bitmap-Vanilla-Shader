@@ -13,7 +13,7 @@ layout(std140) uniform SamplerInfo {
 out vec4 fragColor;
 
 void main() {
-    vec2 transformedCoord = mod(((texCoord * OutSize) / 8), 1);
+    vec2 transformedCoord = mod(((texCoord * OutSize) * 0.125), 1);
     vec4 noise = texture(PatternSampler, transformedCoord);
 
     vec4 col = texture(DiffuseSampler, texCoord) + noise * vec4(1.0/12.0, 1.0/12.0, 1.0/6.0, 1.0);
