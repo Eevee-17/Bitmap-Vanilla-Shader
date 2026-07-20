@@ -14,20 +14,13 @@ out vec4 fragColor;
 
 void main() {
     vec4 texel = texture(DiffuseSampler, texCoord);
-
-    vec3 loweredContrast = mix(texel, 1.0 - texel, 0.4).rgb;
-
     vec2 transformedCoord = mod(((texCoord * OutSize) * 0.125), 1);
     vec4 noise = texture(PatternSampler, transformedCoord);
 
-    vec3 col = loweredContrast + noise.rgb * vec3(1.0/12.0, 1.0/12.0, 1.0/6.0);
-    float r = float(int(col.r*8.0)) * 0.125;
-    float g = float(int(col.g*8.0)) * 0.125;
-    float b = float(int(col.b*4.0)) * 0.25;
-
-    float avgColor = (r + g + b) * 0.3333;
-
-    float threshold = avgColor > 0.47 ? 1.0 : 0.0;
+    float avgColor = (texel.r + texel.g + texel.b) * 0.3333;
+    float loweredContrast = (avgColor - 0.5) * 0.2 + 0.5;
+    float col = loweredContrast + noise.r * 0.082;
+    float threshold = col > 0.5 ? 1.0 : 0.0;
 
     fragColor = vec4(vec3(threshold), 1.0);
 }
