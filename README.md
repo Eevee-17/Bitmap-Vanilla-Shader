@@ -1,5 +1,4 @@
 This shader is a post-processing shader.
-**It only works when graphics is set to _Bitmap_** _(fabulous!)_
 
 This vanilla shader is a resource pack and works with vanilla Minecraft; _no mods needed_!
 

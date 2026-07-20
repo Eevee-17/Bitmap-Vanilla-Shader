@@ -1,0 +1,45 @@
+{
+    "targets" : {
+        "final": {}
+    },
+    "passes": [
+        {
+            "vertex_shader": "minecraft:core/screenquad",
+            "fragment_shader": "minecraft:post/bitmap",
+            "inputs": [
+                {
+                    "sampler_name": "Diffuse",
+                    "target": "minecraft:main"
+                },
+                {
+                    "sampler_name": "Pattern",
+					"location": "minecraft:notch_pattern",
+					"width": 16,
+					"height": 16,
+					"bilinear": true
+                }
+            ],
+            "output": "final"
+        },
+        {
+            "vertex_shader": "minecraft:core/screenquad",
+            "fragment_shader": "minecraft:post/blit",
+            "inputs": [
+                {
+                    "sampler_name": "In",
+                    "target": "final"
+                }
+            ],
+            "uniforms": {
+                "BlitConfig": [
+                    {
+                        "name": "ColorModulate",
+                        "type": "vec4",
+                        "value": [ 1.0, 1.0, 1.0, 1.0 ]
+                    }
+                ]
+            },
+            "output": "minecraft:main"
+        }
+    ]
+}
